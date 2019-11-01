@@ -1,0 +1,3 @@
+An example for GET:
+
+https://api.telegram.org/botSomeTokenValue/setWebhook?url=https://google.com
