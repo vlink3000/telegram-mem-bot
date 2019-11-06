@@ -11,7 +11,7 @@ $request = json_decode(file_get_contents('php://input'), JSON_OBJECT_AS_ARRAY);
 file_put_contents( 'bot_logs.txt', file_get_contents('php://input'));
 
 if(is_null($request)) {
-    if(isset($_COOKIE['secret']) && $_COOKIE['secret'] === 's0me_p@ssword' ) {
+    if(isset($_COOKIE['secret']) && $_COOKIE['secret'] === 'vova' ) {
         readfile("FE/index.html");
     } else{
         readfile("FE/auth.html");
