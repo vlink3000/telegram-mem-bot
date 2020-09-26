@@ -1,8 +1,8 @@
 <?php
 
-require_once ('classes.php');
+require_once('classes.php');
 
-//error_reporting(E_ERROR | E_WARNING | E_PARSE);
+error_reporting(E_ERROR | E_WARNING | E_PARSE);
 
 //get response from telegram api
 $request = json_decode(file_get_contents('php://input'), JSON_OBJECT_AS_ARRAY);

@@ -44,6 +44,8 @@ class Custom implements StrategyInterface{
         }
 
         $requestArray = explode (",", mb_strtolower($request['message']['text']));
+
+
         if(is_numeric($requestArray[0])){
             $url = "http://risovach.ru/generator/preview?id=".$requestArray[0].$words."";
             $memId = $requestArray[0];
@@ -65,7 +67,7 @@ class Custom implements StrategyInterface{
         $imgName = strtotime("now");
         file_put_contents('tmp/' . $imgName . '.png', $curl);
 
-        $photoUrl = 'https://mem-bot-02.000webhostapp.com/tmp/'.$imgName.'.png';
+        $photoUrl = 'https://mem-bot-v2.5v.pl/tmp/'.$imgName.'.png';
 
         return [
             'params' => [
