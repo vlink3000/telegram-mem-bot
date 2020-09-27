@@ -4,7 +4,7 @@ class Start implements StrategyInterface{
 
     public function prepareResponse(array $request)
     {
-        $message = "Привет! Я мем бот и умею делать... правильно - МЕМЫ!\n----------\n Как создать свой мем - <b>/info</b>";
+        $message = "Привет! Меня зовут Мем Бот и я умею делать... правильно - МЕМЫ!\n----------\n Как создать свой мем - <b>/info</b>";
 
         return [
             'params' => [

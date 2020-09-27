@@ -4,7 +4,7 @@ class CallTelegramApi
 {
     public function sendPostRequest($method, $params = [])
     {
-        $config = include ($_SERVER["DOCUMENT_ROOT"] . '/BE/Config/config.php');
+        $config = include($_SERVER["DOCUMENT_ROOT"].'/core/Config/config.php');
         $baseUrl = $config['endpoint'];
 
         if(!empty($params)) {
@@ -20,6 +20,6 @@ class CallTelegramApi
         // close the connection, release resources used
         curl_close($ch);
 
-        return $response;
+        return $params;
     }
 }

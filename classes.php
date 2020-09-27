@@ -1,12 +1,12 @@
 <?php
 
-include('BE/Interface/StrategyInterface.php');
-include('BE/Factory/StrategyFactory.php');
-include('BE/Context/StrategyContext.php');
-include('BE/Strategy/Start.php');
-include('BE/Strategy/Info.php');
-include('BE/Strategy/Random.php');
-include('BE/Strategy/Custom.php');
-include('BE/Http/Curl/CallTelegramApi.php');
-include('BE/Http/Curl/DownloadImage.php');
-include('BE/Converter/RequestConverter.php');
+include('core/Interface/StrategyInterface.php');
+include('core/Factory/StrategyFactory.php');
+include('core/Context/StrategyContext.php');
+include('core/Strategy/Start.php');
+include('core/Strategy/Info.php');
+include('core/Strategy/Random.php');
+include('core/Strategy/Custom.php');
+include('core/Http/Curl/CallTelegramApi.php');
+include('core/Http/Curl/DownloadImage.php');
+include('core/Converter/RequestConverter.php');

@@ -2,26 +2,39 @@
 
 require_once('classes.php');
 
-error_reporting(E_ERROR | E_WARNING | E_PARSE);
-
-//get response from telegram api
 $request = json_decode(file_get_contents('php://input'), JSON_OBJECT_AS_ARRAY);
 
-//save logs, info about  latest conversation
-file_put_contents( 'bot_logs.txt', file_get_contents('php://input'));
-
 if(is_null($request)) {
-    if(isset($_COOKIE['secret']) && $_COOKIE['secret'] === 'vova' ) {
-        readfile("FE/index.html");
-    } else{
-        readfile("FE/auth.html");
-    }
+    $userArr = json_decode(file_get_contents('logs.json'), true);
+    usort($userArr, 'sortByDate');
+    echo json_encode($userArr);
 } else {
-    //chose response strategy
     $factory = new StrategyFactory();
     $response = $factory->chooseStrategy($request);
 
-    //send response message to user
     $curl = new CallTelegramApi();
-    $curl->sendPostRequest($response['method'][0], $response['params']);
+    $response = $curl->sendPostRequest($response['method'][0], $response['params']);
+
+    $json = file_get_contents('logs.json');
+    $data = json_decode($json);
+    $jsonArr = [];
+    $jsonArr['username'] = 'https://web.telegram.org/#/im?p=@' . $request['message']['from']['username'];
+    $jsonArr['message'] = $request['message']['text'];
+    $jsonArr['image_url'] = $response['photo'];
+    $jsonArr['requested_at'] = getTime();
+    $data[] = $jsonArr;
+    file_put_contents('logs.json', json_encode($data));
+}
+
+function getTime(): string {
+    $tz = 'Europe/Warsaw';
+    $timestamp = time();
+    $dt = new DateTime("now", new DateTimeZone($tz)); //first argument "must" be a string
+    $dt->setTimestamp($timestamp); //adjust the object to correct timestamp
+
+    return $dt->format('H:i:s, d-m-Y');
+}
+
+function sortByDate($a, $b) {
+    return $a['requested_at'] < $b['requested_at'];
 }

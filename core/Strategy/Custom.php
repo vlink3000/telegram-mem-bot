@@ -74,7 +74,7 @@ class Custom implements StrategyInterface{
                 'chat_id' => $request['message']['chat']['id'],
                 'photo' => $photoUrl,
                 'parse_mode' => 'html',
-                'caption' => 'с помощью @memasnybot<pre> уникальный id: </pre>'.$memId,
+                'caption' => 'с помощью @memasny_bot<pre> уникальный id: </pre>'.$memId,
             ],
             'method' => [
                 'sendPhoto'
